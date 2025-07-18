@@ -1,0 +1,664 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected
+,"Test Case","TC07001 - Indicating the battery level of the scanner",,,
+,,,"1","Setup: Enter the Scan step.
+Emulate the battery level or manually reach it.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Charge or discharge the battery to reach a level between 81% and 100%.
+Inspect the Scanner State toolkit.
+
+Requirement(s): 6877_012, 6877_013","The scanner battery level is shown as a percentage.
+The battery icon indicates the battery is completely charged.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Start scanning.
+
+Requirement(s): 6877_012, 6877_013","The battery level and the icon are still displayed.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"4","Charge or discharge the battery to reach a level between 51% and 80%.
+Inspect the Scanner State toolkit.
+
+Requirement(s): 6877_012, 6877_013","The scanner battery level is displayed as a percentage.
+The battery icon indicates a battery partially filled (more than half).
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"5","Start scanning.
+
+Requirement(s): 6877_012, 6877_013","The battery level and the icon are still displayed.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"6","Charge or discharge the battery to reach a level between 21% and 50%.
+Inspect the Scanner State toolkit.
+
+Requirement(s): 6877_012, 6877_013","The scanner battery level is displayed as a percentage.
+The battery icon indicates a battery partially filled (less than half).
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"7","Start scanning.
+
+Requirement(s): 6877_012, 6877_013","The battery level and the icon are still displayed.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"8","Charge or discharge the battery to reach a level between 1% and 20%.
+Inspect the Scanner State toolkit.
+
+Requirement(s): 6877_012, 6877_013","The scanner battery level is displayed as a percentage.
+The battery icon indicates a low battery (warning).
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"9","Start scanning.
+
+Requirement(s): 6877_012, 6877_013","The battery level and the icon are still displayed.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"10","Disconnect the scanner.
+
+Requirement(s): 6877_012, 6877_013","The scanner is disconnected.
+The battery level and the icon are no longer shown.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07002 - Indicating the scanner is charging",,,
+,,,"1","Setup: The user is in the Scan step.
+A scanner is connected.
+The scanner stand is plugged in.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Put the scanner on the holder.
+
+Requirement(s): 6877_013, 6877_014","The scanner starts charging.
+The scanner battery level percentage is displayed.
+The battery icon indicates that the battery is charging.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07003 - No scanner is detected - Manual connection (First time use)",,,
+,,,"1","Setup: New database.
+Have no available scanner available.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the scan step.
+
+Requirement(s): 6877_019","The Scanner State toolkit displays the detection guidance screens for 16 seconds.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Wait 16 seconds.
+
+Requirement(s): 6877_017","The Scanner State toolkit indicates that no scanner has been detected.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07004 - The scanner is detected - Manual connection (First time use)",,,
+,,,"1","Setup: New database.
+Several scanners are available.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the scan step.
+
+Requirement(s): 6877_001, 6877_002","The Scanner State toolkit displays the list of available scanners around .
+No scanner in the list is marked as  “Last used”.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Select a scanner to connect from the list.
+
+Requirement(s): 6877_018","The Scanner State toolkit briefly indicates that the software is connecting to the selected scanner.
+The scanner connects and is ready to scan.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07005 - The last used scanner is not detected – Automatic connection",,,
+,,,"1","Setup: Have already connected scanner A to the software.
+Have scanner A and a scanner B in proximity, both turned-off.
+
+Requirement(s): n/a","Indicate the ID of scanners A and B
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the scan step.
+
+Requirement(s): 6877_019","The Scanner State toolkit displays the detection guidance screens for 16 seconds.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"3","Wait 16 seconds.
+
+Requirement(s): 6877_017","The Scanner State toolkit indicates that no scanner has been detected.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"4","Turn-on scanner B.
+
+Requirement(s): 6877_002, 6877_003, 6877_007","The Scanner State toolkit displays the list of available scanners (scanner B).
+The scanner B should not be shown as last used.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07006 - The last used scanner is detected – Automatic connection",,,
+,,,"1","Setup: Have already connected scanner A and then scanner B to the software (in that order).
+Have scanner A and a scanner B in proximity, both turned-on.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the scan step.
+
+Requirement(s): 6877_006","The software should automatically connect to scanner B.
+The Scanner State toolkit indicates that the scanner is connected and ready to scan.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Navigate through the different Scan views (Lower, Upper).
+
+Requirement(s): 6877_006","The scanner stays connected.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,"Test Case","TC07007 - Manual disconnection of the last used scanner – Automatic connection",,,
+,,,"1","Setup: Enter the Scan step and connect to a scanner.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Scan the Lower, Upper and Bite.
+Leave the Scan step.
+
+Requirement(s): n/a","The status LED indicates that the scanner is disconnected.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"3","Go back to the Scan step.
+
+Requirement(s): 6877_006","The scanner automatically reconnects to the software.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Click Select scanner icon on the Scanner State toolkit to disconnect the scanner.
+
+Requirement(s): n/a","The scanner disconnects.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"5","Navigate through the different Scan views (Lower, Upper).
+
+Requirement(s): 6877_008","The scanner stays disconnected.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"6","Leave the Scan step.
+Go back to the Scan step.
+
+Requirement(s): 6877_006, 6877_008","The scanner automatically reconnects.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"7","Click Select scanner icon.
+
+Requirement(s): 6877_006","The scanner disconnects.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"8","Log out to close the case.
+Log back in.
+Reopen the case and go to the Scan step within 10 min (before the scanner enters sleep mode).
+
+Requirement(s): 6877_006","The scanner automatically reconnects.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07008 - Automatic reconnection when the scanner turned on",,,
+,,,"1","Setup: Enter the Scan step and connect to a scanner.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Long press on the scanner M button.
+
+Requirement(s): 6877_006","The Scanner State toolkit indicates that the scanner is disconnected.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Press any button on the scanner.
+
+Requirement(s): 6877_006","The scanner automatically reconnects.
+The Scanner State toolkit indicates that the scanner is ready to scan.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07009 - Connecting to a different scanner",,,
+,,,"1","Setup: Have scanner A and B available.
+Enter the Scan step and connect to scanner A.
+Indicate the ID of scanner A and B.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Click Select scanner icon on the Scanner State toolkit to disconnect the scanner.
+
+Requirement(s): 6877_002, 6877_004, 6877_005","Scanner A is disconnected.
+The Scanner State toolkit displays the list of available scanners (scanner A (last used) and scanner B).
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Connect to scanner B.
+
+Requirement(s): 6877_002, 6877_004, 6877_005","The scanner B connects.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"4","Perform all the scans with the scanner B
+Click Select scanner icon.
+Connect to scanner A.
+
+Requirement(s): 6877_027","The scanner A is not connected, and an error message is displayed to inform the user that the scanner B is not compatible with the current case.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07010 - Scanner connection list is updating",,,
+,,,"1","Setup: New database.
+Have three scanners available and turned-off.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the Scan step.
+
+Requirement(s): 6877_003","The software starts looking for scanner to populate the scanner list.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"3","Turn on all three scanners consecutively.
+
+Requirement(s): 6877_003","The Scanner State toolkit shows the list of available scanners.
+The scanners appear one by one in the list.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Turn off one scanner.
+
+Requirement(s): 6877_003","This scanner disappears from the list.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"5","Unplug the TP-Link.
+
+Requirement(s): 6877_025","The Scanner State toolkit indicates that no Wi-Fi adapter is detected and ask the user to plug it in.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07011 - The scanner shut down after 10 minutes of inactivity",,,
+,,,"1","Setup: Enter the Scan step with a connected scanner.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Leave the scanner inactive for 10 minutes.
+
+Requirement(s): 6877_009, 6877_011","The scanner disconnects and turns off.
+The Scanner State toolkit indicates that the scanner is disconnected.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"3","Turn the scanner back on and verify if the scanner reconnects automatically to the software.
+
+Requirement(s): 6877_006, 6877_009, 6877_011","The scanner automatically reconnects.
+Once the scanner is reconnected, the Scanner State toolkit indicates that the scanner is ready to scan.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"4","Press the Scan button and start scanning.
+
+Requirement(s): 6877_011","The Scanner State displays a live image of what the scanner’s sensor receives (live preview)
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,"Test Case","TC07012 - Connection to scanner that is connected to another computer",,,
+,,,"1","Setup: Have a scanner that is already connected to another computer.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the Scan step and display the list of available scanners.
+
+Requirement(s): 6877_010","The scanner that is already connected to another computer is listed.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Make sure that the scanner is not currently scanning on the other computer.
+Try to connect the scanner.
+
+Requirement(s): 6877_010","The scanner does not connect.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"4","Make sure that the scanner is currently scanning on the other computer.
+Try to connect the scanner.
+
+Requirement(s): 6877_010","The scanner does not connect.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,"Test Case","TC07013 - Connection states of the scanner (except overheating)",,,
+,,,"1","Setup: n/a
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the Scan step and connect a scanner (automatically or manually).
+
+Requirement(s): 6877_011, 6877_018","The Scanner State toolkit indicates that the scanner is connecting.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Wait until the scanner is connected.
+
+Requirement(s): 6877_011","The Scanner State toolkit indicates that the scanner is ready to scan.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Press the Scan button and start scanning.
+
+Requirement(s): 6877_011","The Scanner State toolkit indicates that the scanner is scanning by displaying the live image (e.g. Scanning states).
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"5","Long-press the M button while not scanning to switch it off.
+
+Requirement(s): 6877_011","The Scanner State toolkit indicates that the scanner is disconnected.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07014 - The scanner is overheating",,,
+,,,"1","Setup: Use the debug tool to trigger the overheating (ctrl +alt+s and ctrl +f1)
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the Scan step and connect a scanner (automatically or manually).
+
+Requirement(s): 6877_011","The Scanner State toolkit indicates that the scanner is connected and ready to scan.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"3","In debug mode, activate the overheating toggle.
+On the scanner, press “M” button to force status communication.
+
+Requirement(s): 6877_011, 6877_021","The Scanner State toolkit indicates that the scanner is overheating and the guidance to resume scanning is displayed.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Try to start scanning.
+
+Requirement(s): 6877_011, 6877_020","The scanning does not start.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"5","In debug mode, deactivate the overheating toggle.
+On the scanner, press “M” button to force status communication.
+
+Requirement(s): 6877_011","The Scanner State toolkit no longer indicates that the scanner is overheating.
+The Scanner State toolkit indicates that the scanner is ready to scan.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"6","Start scanning.
+
+Requirement(s): 6877_011, 6877_020","The scanning starts.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,"Test Case","TC07015 - Compatibility of Wi-Fi adapter (TP-Link)",,,
+,,,"1","Setup: Have two different compatible models of Wi-Fi adapter: adapter A and adapter B.
+Have the credentials to modify the online Wi-Fi adapter list.
+Re-install the software with a new database
+Have NO internet connection.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Start the software with no internet connection.
+Go to %localappdata%\DWIO\logs to check the IOClient logs
+
+Requirement(s): 6877_015, 6877_024","The current list of the wifi adapters is logged with the VID and PID numbers.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Plug in the adapter A.
+Go to Device Manager > Network adapters > TP-Link… > Properties > Details > Hardware IDs
+
+Requirement(s): 6877_015, 6877_024","The VID and PID numbers of the adapter A are displayed.
+This Wi-Fi adapter is listed in the current Wi-Fi adapter list.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Connect a scanner.
+Start scanning the arch.
+
+Requirement(s): 6877_015, 6877_024","The scanner is connected, and the user can scan the arch.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"5","Plug in the adapter B.
+Go to Device Manager > Network adapters > TP-Link… > Properties > Details > Hardware IDs
+
+Requirement(s): 6877_015, 6877_024","The VID and PID numbers of the adapter B are displayed.
+This Wi-Fi adapter is listed in the previous Wi-Fi adapter list.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"6","Connect a scanner.
+Start scanning the arch.
+
+Requirement(s): 6877_015, 6877_024","The scanner is connected, and the user can scan the arch.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"7","Turn On debug mode (ctrl+alt+s and ctrl+f1).
+Go to Options > Debug tools
+Set the Cloud environment to «PPR»
+Shutdown the software and Turn ON the internet connection
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: Preparation"
+,,,"8","Connect to the web service.
+Edit the list to make sure that:
+The adapter A PID and VID are NOT on the list
+The adapter B PID and VID are on the list
+
+Requirement(s): 6877_015, 6877_023","The list of supported Wi-Fi adapters is displayed and can be edited.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"9","Restart the software.
+Go to %localappdata%\DWIO\logs to check the IOClient logs
+
+Requirement(s): 6877_015, 6877_023","The new list is updated from the web service using a secure protocol (HTTPS request).
+The new list of the wifi adapter is logged with the VID and PID numbers.
+This list reflects the update on the online list.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"10","Create a case and go to Scan step.
+Plug in the adapter A which is NOT on the list.
+
+Requirement(s): 6877_015","The Scanner State toolkit indicates that no Wi-Fi adapter is detected and ask the user to plug it in.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"11","Plug in the adapter B which is on the list.
+
+Requirement(s): 6877_015","The software is detecting and listing scanners to connect to.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"12","Connect a scanner.
+Start scanning the arch.
+
+Requirement(s): 6877_015","The scanner is connected, and the user can scan the arch.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"13","Connect to the web service.
+Edit the list to make sure that both adapters are on the list.
+Restart the software
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: Preparation"
+,,,"14","Create a case and go to Scan step.
+Plug in the adapter A
+Connect a scanner.
+Start scanning the arch.
+
+Requirement(s): 6877_015","The software is detecting and listing scanners to connect to.
+The scanner is connected, and the user can scan the arch.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,"Test Case","TC07016 - Scanner connection troubleshooting guide – No scanner detected",,,
+,,,"1","Setup: Have no available scanner.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the Scan step.
+
+Requirement(s): 6877_016","The software indicates that no scanner was found and shows a Need Help? link to help the user.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"3","Click Need Help? to open the troubleshooting guide.
+
+Requirement(s): 6877_016","The scanner connection troubleshooting guide opens.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07017 - Scanner connection troubleshooting guide – Connection not established",,,
+,,,"1","Setup: Have a scanner A available
+Have a scanner B that is already connected to another computer.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to the Scan step and display the list of available scanners.
+Connect to the scanner B.
+
+Requirement(s): 6877_016","The connection to the scanner cannot be established.
+The list of scanners is displayed and shows a Need Help? link to help the user.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Click Need Help? to open the troubleshooting guide.
+
+Requirement(s): 6877_016","The scanner connection troubleshooting guide opens.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Connect to the scanner B.
+Unplug the Wi-Fi adapter while connecting.
+
+Requirement(s): 6877_025","The Scanner State toolkit indicates that no Wi-Fi adapter is detected and ask the user to plug it in.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"5","Re-plug the Wi-Fi adapter.
+Turn OFF all surrounding scanners.
+
+Requirement(s): 6877_016","The Scanner State toolkit indicates that no scanner was found and shows a Need Help? link to help the user.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"6","Click Need Help? to open the troubleshooting guide.
+
+Requirement(s): 6877_016","The scanner connection troubleshooting guide opens.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07018 - Wi-Fi channels based on the location of the system",,,
+,,,"1","Setup: Have three licenses from three different countries, respectively belonging to region 0, region 1, and a country that doesn’t belong to either region.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Start the software with a new database and use a license with country that belongs to region 0 (default channel), then proceed to the scan step
+
+Requirement(s): 6877_022","The scanner connects and is ready to scan.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"3","Go to AppData\Local\DWIO\logs open IOClient.txt and check 
+country code
+
+Requirement(s): 6877_022","The displayed country ID is the same as the license country.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Re-start the software with a new database and use a license with country that belongs to region 1, then proceed to the scan step
+
+Requirement(s): 6877_022","The scanner connects and is ready to scan.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"5","Go to AppData\Local\DWIO\logs open IOClient.txt and check 
+country code
+
+Requirement(s): 6877_022","The displayed country ID is the same as the license country.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"6","Re-start the software with a new database and use a license with country which doesn’t belong to either region 0 or region 1, then proceed to the scan step
+
+Requirement(s): 6877_022","The scanner connects and is ready to scan.
+
+Test Method/Objective Evidence: Observation / Result documentation"
+,,,"7","Go to AppData\Local\DWIO\logs open IOClient.txt and check 
+country code
+
+Requirement(s): 6877_022","The displayed country ID is the default ID of the region 0.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07019 - Scanner State toolkit indicates the Scanner ID",,,
+,,,"1","Setup: Have a scanner available.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a case and go to the Scan step.
+Connect the scanner.
+
+Requirement(s): 6877_026","The ID of the scanners that the software is connecting to is displayed.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Wait that the scanner is connected.
+Hover over the battery level icon with the mouse
+
+Requirement(s): 6877_026","The ID of the currently connected scanner is displayed in the tooltip.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"4","Turn OFF the scanner.
+Create a new case and go to the Scan step.
+
+Requirement(s): 6877_026","The Scanner State toolkit indicates the ID of the last used scanner that the software is looking for.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07020 - The software connects to scanner over secured WiFi",,,
+,,,"1","Setup: Have a scanner available and the WiFi adapter plugged in IOS system.
+Create a case (ex: quick scan) and follow the workflow to the scan view.
+Make sure the scanner is connected.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","In Windows, open Setting > WiFi > <scanner serial#>
+The page shows the <scanner serial#> properties.
+Find the Security type value
+
+Requirement(s): 6877_028","The security type value is WPA2-Personal
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Edit the Advanced WiFi network properties.
+In the pop-up window open the Security tab.
+
+Requirement(s): 6877_028","Security type is WPA2-Personal
+Encryption type is AES
+Network security key is <refer to secret pass key>
+*Click on show characters
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC07021 - Secure communication between the software and the firmware",,,
+,,,"1","Setup: Have a scanner available and the WiFi adapter plugged.
+Install Wireshark SW..
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Identify interface and IP
+Create a case and go to scan view to connect to the scanner.
+(Make sure that the scanner remains connected.)
+Open a windows command line interpreter.
+Run: netsh wlan show interface
+Take screenshot of the WiFi name that correspond to the scanner, you can use SSID which should be the scanner s/n.
+
+Requirement(s): n/a","
+
+Test Method/Objective Evidence: "
+,,,"3","In command line type: ipconfig
+find the interface that you have identified above.
+Screenshot of the IPv6 address.
+This address is the IP of the WiFi dongle connected to the scanner that will be identified as “client” in the following test case.
+
+Requirement(s): n/a","
+
+Test Method/Objective Evidence: "
+,,,"4","Get a scanner with a firmware version that is not up to date with the software version
+
+Requirement(s): n/a","
+
+Test Method/Objective Evidence: "
+,,,"5","Collecting data
+Launch Wireshark and start recording to the WiFi interface identified above. To do it select the WiFi interface and click on the “capture” icon.
+Launch Straumann IOS, log in as regular user, create a case and go to scan view.
+Upgrade the scanner’s firmware upon request.
+When the update is completed, stop the capture in Wireshark and go to the Wireshark capture screen.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: Preparation"
+,,,"6","In Wireshark type in the filter field: ssh.message_code == 3 and note the packet number, this is the beginning of the FW upgrade.
+Deactivate the packet filtering.
+Starting from the packet identified in this step, scroll some packet above to find an SSHv2 packet from the client where the description contains “Key Exchange Init”.
+
+Requirement(s): 6877_029","The packet description indicates that Elliptic-curve Diffie–Hellman (ECDHE) is used as the key exchange encryption protocol.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"7","Starting from the packet identified in the previous step, check for SSHv2 packet where the source is the client IP.
+
+Requirement(s): 6877_029","Packets description contains “Client: Encrypted packet”.
+
+Test Method/Objective Evidence: Observation / Screenshot"

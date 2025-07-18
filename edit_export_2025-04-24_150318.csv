@@ -1,0 +1,24 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected
+66173,"Test Case","TC06001 – Start/Stop scanning_v2",,,
+,,,"1","Setup: Create a new case.
+
+Requirement(s): n/a","n/a
+
+TM / OE:n/a"
+,,,"2","Go to the Scan step and connect the scanner.
+
+Requirement(s): 6973_002, 6973_003","The scanner state designer indicates that the scanner is connected and ready to scan.
+
+TM / OE:Observation/ Result documentation"
+,,,"3","Press the SCAN button on the scanner.
+
+Requirement(s): 6973_002, 6973_003","The scan starts.
+The scanner state designer indicates that the scanner is scanning by displaying a live image.
+
+TM / OE:Observation / Screenshot"
+,,,"4","Press the SCAN button another time.
+
+Requirement(s): 6973_002, 6973_003","The scan stops.
+The scanner state designer indicates that the scanner is connected and ready to resume scanning.
+
+TM / OE:Observation / Screenshot"

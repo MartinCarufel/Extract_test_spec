@@ -1,0 +1,238 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected
+,"Test Case","TC02101 – Upgrading the firmware version",,,
+,,,"1","Setup: Use a scanner with a firmware version that is not up to date with the software version.
+Use a scanner with battery level above 40%.
+The “[software version]” refers to the current version of the software on which this test is being executed.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to C:\Program Files
+\Straumann\SIRIOS\[software version]\Scanner\firmware
+
+Requirement(s): 7095_001","The firmware folder contains the latest firmware version packaged in a zip file.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Create a new case and go to Scan step.
+Connect the scanner.
+
+Requirement(s): 7095_002","A message is displayed indicating that the firmware is not up to date.
+The user is able to cancel or upgrade the firmware.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"4","Click Upgrade to start the firmware upgrade process.
+
+Requirement(s): 7095_004, 7095_006","The firmware upgrade process starts.
+A message is displayed informing the user about the progress of the upgrade.
+The Cancel button is greyed out.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"5","Wait until the upgrade is completed.
+
+Requirement(s): 7095_007","A message is displayed indicating that the upgrade is completed, and the scanner is now up to date.
+The scanner is connected and ready to scan.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,"Test Case","TC02102 – Upgrading the firmware version with low battery, charging",,,
+,,,"1","Setup: Use a scanner with a firmware version that is not up to date with the software version.
+Use a scanner with battery level below 40%
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a new case and go to Scan step.
+Put the scanner on charge.
+Connect the scanner.
+Click Upgrade to start the firmware upgrade process.
+
+Requirement(s): 7095_004","The upgrade starts directly.
+No message is displayed to indicate that the battery is too low.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,"Test Case","TC02103 – Upgrading the firmware version with low battery",,,
+,,,"1","Setup: Use a scanner with a firmware version that is not up to date with the software version.
+Use a scanner with battery level below 40%
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a new case and go to Scan step.
+Connect the scanner.
+Click Upgrade to start the firmware upgrade process.
+
+Requirement(s): 7095_004, 7095_005","A message is displayed indicating that the battery is too low to perform the upgrade, and that the scanner must be charging to start the upgrade.
+
+Test Method/Objective Evidence: Observation / Screenshot"
+,,,"3","Put the scanner on charge.
+
+Requirement(s): 7095_006","The firmware upgrade process starts.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,,,"4","Wait until the upgrade is completed.
+
+Requirement(s): 7095_007","A message is displayed indicating that the upgrade is completed, and the scanner is now up to date.
+The scanner is connected and ready to scan.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,"Test Case","TC02104 – Declining the firmware upgrade",,,
+,,,"1","Setup: Use a scanner with a firmware version that is not up to date with the software version.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a new case and go to Scan step.
+Connect the scanner.
+
+Requirement(s): 7095_002","A message is displayed indicating that the firmware is not up to date.
+The user is able to cancel or upgrade the firmware.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,,,"3","Click Cancel to decline the firmware upgrade.
+
+Requirement(s): 7095_003","The scanner is disconnected.
+The list of available scanners is displayed.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"4","Reconnect the scanner.
+
+Requirement(s): 7095_002","A message is displayed indicating that the firmware is not up to date.
+The user is able to cancel or upgrade the firmware.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,,,"5","Click Upgrade to start the firmware upgrade process.
+
+Requirement(s): 7095_004, 7095_006","The firmware upgrade process starts.
+A message is displayed informing the user about the progress of the upgrade.
+The Cancel button is greyed out.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,"Test Case","TC02105 – Failure during the firmware upgrade",,,
+,,,"1","Setup: Force the firmware update with failure using the debug tool. (turn ON “Make firmware update fail”).
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a new case and go to Scan step.
+Connect the scanner.
+Click Upgrade to start the firmware upgrade process.
+
+Requirement(s): 7095_007, 7095_008","An error message is displayed indicating that the firmware did not upgrade.
+The user is able to choose another scanner or try again.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"3","Click Choose another scanner.
+
+Requirement(s): n/a","The scanner is disconnected.
+The list of available scanners is displayed.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,"Test Case","TC02106 – Disconnection before and during the firmware upgrade",,,
+,,,"1","Setup: Use a scanner with a firmware version that is not up to date with the software version.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a new case and go to Scan step.
+Connect the scanner.
+
+Requirement(s): 7095_002","A message is displayed indicating that the firmware is not up to date.
+The user is able to cancel or upgrade the firmware.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,,,"3","Disconnect the scanner.
+(Unplug the Wi-Fi adapter or turn OFF the scanner)
+
+Requirement(s): 7095_009","The scanner is disconnected.
+The message indicating that the firmware is not up to date is not displayed.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,,,"4","Reconnect the scanner.
+Click Upgrade to start the firmware upgrade process.
+
+Requirement(s): 7095_004, 7095_006","The firmware upgrade process starts.
+A message is displayed informing the user about the progress of the upgrade.
+The Cancel button is greyed out.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,,,"5","Disconnect the scanner.
+(Unplug the Wi-Fi adapter or turn OFF the scanner).
+
+Requirement(s): 7095_009","The scanner is disconnected.
+The firmware upgrade process is still running.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"6","Wait until the upgrade window closes.
+
+Requirement(s): 7095_009","The firmware upgrade process is canceled if the scanner is not reconnected after a couple of minutes.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,"Test Case","TC02107 – Unknown firmware compatibility",,,
+,,,"1","Setup: Force the unknow compatibility the debug tool.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a new case and go to Scan step.
+Connect the scanner.
+
+Requirement(s): 7095_010","An error message is displayed advising to contact technical support.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"3","Click Close.
+
+Requirement(s): 7095_010","The error message is closed.
+The scanner is disconnected.
+The list of available scanners is displayed.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,"Test Case","TC02108 – Upgrading the software version",,,
+,,,"1","Setup: Force the software update using the debug tool.
+Installation must be done from staging, and a new software version must be available on staging.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Go to Options > About
+
+Requirement(s): n/a","The software version is displayed.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"3","Create a new case and go to Scan step.
+Connect the scanner.
+
+Requirement(s): 7095_002","A message is displayed indicating that the software is not up to date.
+The user is able to cancel or update the software.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"4","Click Cancel to decline the software update.
+
+Requirement(s): 7095_003","The scanner is disconnected.
+The list of available scanners is displayed.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,,,"5","Reconnect the scanner.
+Click on Update to update the software.
+
+Requirement(s): n/a","The software update starts.
+The software updates to the latest version available.
+
+Test Method/Objective Evidence: Observation/ Result documentation"
+,,,"6","Go to Options > About
+
+Requirement(s): n/a","The software version is displayed.
+The software has been updated.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
+,"Test Case","TC02109 – No software version available",,,
+,,,"1","Setup: Force the software update using the debug tool.
+Installation must be done from staging, and no new software version must be available on staging.
+
+Requirement(s): n/a","n/a
+
+Test Method/Objective Evidence: n/a"
+,,,"2","Create a new case and go to Scan step.
+Connect the scanner.
+
+Requirement(s): 7095_011","An error message is displayed advising to contact technical support.
+
+Test Method/Objective Evidence: Observation/ Screenshot"
