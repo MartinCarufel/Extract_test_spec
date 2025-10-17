@@ -1,10 +1,5 @@
 # from spire.doc import *
 # from spire.doc.common import *
-
-"""
-Depricated do not use
-"""
-
 import string
 
 from docx import Document

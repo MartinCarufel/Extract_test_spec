@@ -24,6 +24,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\export_2025-10-17_102753.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\export_2025-10-17_112158.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\export_2025-10-17_113340.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\export_from excel.csv">
           <value>
             <Attribute>
