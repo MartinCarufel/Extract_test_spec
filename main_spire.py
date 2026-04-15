@@ -38,6 +38,8 @@ def fetch_doc_in_dict(pathfile, extract_type):
                 # print(para_text)
                 if extract_type == "sirios":
                     match = re.match(r"TC[0-9]{5}", para_text)   # SIRIOS
+                if extract_type == "sirios_uc":
+                    match = re.match(r"UC[0-9]{5}", para_text)   # SIRIOS
                 if extract_type == "dwos":
                     match = re.match(r"UC\d\d\d\.\d{1,2}", para_text)   # DWOS
                 # print(match)
@@ -46,7 +48,7 @@ def fetch_doc_in_dict(pathfile, extract_type):
 
                     # Look ahead for the next table
                     for k in range(j + 1, body_items.Count):
-                        if extract_type == "sirios":
+                        if extract_type in ["sirios", "sirios_uc"]:
                             next_item = body_items.get_Item(k)    # SIRIOS
                         if extract_type == "dwos":
                             next_item = body_items.get_Item(k + 1)  # DWOS
@@ -133,11 +135,13 @@ def csv_construct_tc(table, extract_type):
     print(table)
     if extract_type == "sirios":
         pattern = r"(TC\d{5})( \W )(.*)"           # SIRIOS
+    if extract_type == "sirios_uc":
+        pattern = r"(UC\d{5})( \W )(.*)"           # SIRIOS
     if extract_type == "dwos":
         pattern = r"(UC\d\d\d\.\d{1,2})( \W )(.*)"   # DWOS
     split_title = re.split(pattern, table)
     # return f",\"Test Case\",\"{table}\",,,\n"
-    return f",\"Test Case\",\"{split_title[1]} - {split_title[3]}\",,,\n"
+    return f",\"Test Case\",\"{split_title[1]} - {split_title[3]}\",,,,\"Data capturing Solutions ART\",\"Martin Carufel\",\"Design\"\n"
 
 
 def csv_setup_step(id, text):
@@ -168,7 +172,7 @@ def csv_construct_test_step(id, text):
     return f",,,\"{id}\",\"{text}\r\n\r\n"
 
 
-def csv_construct_req(text):
+def csv_construct_req(text, extract_type):
     """
         Extracts and formats requirement references from a text block.
 
@@ -181,7 +185,17 @@ def csv_construct_req(text):
             str: CSV field for requirements. ex: 6900-001, 6900-002, 6900-003
         """
     # print("Test string:",text)
-    pattern = r"\d{4}_\d{3}"
+    if extract_type == "sirios":
+        pattern = r"\d{4}_\d{3}"          # SIRIOS
+    if extract_type == "sirios_uc":
+        pattern = r"\d{1,2}\.\d{3}"          # SIRIOS_UC Validation spec
+   # if extract_type == "dwos":
+    #    pattern = r"(UC\d\d\d\.\d{1,2})( \W )(.*)"   # DWOS
+
+    # pattern = r"\d{4}_\d{3}"
+    print("new item)")
+    print(text)
+    print("end item)")
     req_list = re.findall(pattern, text)
     if len(req_list) > 0:
         output = ", ".join(req_list)
@@ -238,13 +252,13 @@ def main():
         - Extracts test cases and associated data
         - Exports the structured content to a CSV file
         """
-    extract_type = "sirios"        # set to: sirios, dwos
+    extract_type = "sirios_uc"        # set to: sirios, dwos, sirios_uc
     tc_tables = fetch_doc_in_dict(ask_word_file(), extract_type)
     # debug_print(tc_tables)
     now = datetime.now()
     formatted_now = now.strftime("%Y-%m-%d_%H%M%S")
     with open(f"export_{formatted_now}.csv", mode="w", encoding="UTF-8", newline='') as f:
-        f.write(csv_construct_header(["ID","Work Item Type","Title","Test Step","Step Action","Step Expected"]))
+        f.write(csv_construct_header(["ID","Work Item Type","Title","Test Step","Step Action","Step Expected","Area Path","Assigned To","State"]))
         # Cycle test case
         for tc, table in tc_tables.items():
             f.write(csv_construct_tc(table[0], extract_type))
@@ -256,7 +270,7 @@ def main():
                     f.write(csv_setup_step(i, table[i][1]))
                 else:
                     f.write(csv_construct_test_step(i, table[i][1]))
-                f.write(csv_construct_req(table[i][2]))
+                f.write(csv_construct_req(table[i][2], extract_type))
                 f.write(csv_construct_exp_res(table[i][3]))
                 f.write(csv_construct_tm_oe(table[i][4]))
                 # print(table[i][2])
