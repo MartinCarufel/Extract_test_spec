@@ -149,7 +149,7 @@ def csv_construct_tc(table, extract_type):
         return title_row
     except IndexError as e:
         print(f"\n\nAn error occur to create Test Case title: {table}\n"
-              f"Check if TC id and title is sperated by <space>-<space> and not long dash\n\n {e}")
+              f"Check if TC id and title is sperated by <space>-<space>\n\n {e}")
 
 
 
