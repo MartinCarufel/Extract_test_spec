@@ -67,6 +67,7 @@ def fetch_doc_in_dict(pathfile, extract_type):
                                             new_para = []
                                             para = cell.Paragraphs.get_Item(p)
                                             para_text = para.Text.strip().replace('\r', '\n').replace('\v', '\n')
+
                                             # Check for double-quote and replace by opening-closing double quote
                                             if para.Text.count("\"") >= 2:
                                                 if para.Text.count("\"") % 2 == 0:
@@ -81,6 +82,7 @@ def fetch_doc_in_dict(pathfile, extract_type):
                                                         else:
                                                             new_para.append(c)
                                                 else:
+                                                    print(f"section: {k}, row: {r}, cell: {c}")
                                                     print(f"This paragraph <<{para_text}>> have even quotation")
                                                     raise Exception
                                                 para_text = "".join(new_para)
@@ -90,6 +92,7 @@ def fetch_doc_in_dict(pathfile, extract_type):
                                                 raise Exception
                                             cell_lines.append(para_text)
                                         cell_text = '\r\n'.join(cell_lines)
+                                        cell_text = cell_text.replace("\x1e", "-")
                                         row_data.append(cell_text)
                                     table_data.append(row_data)
 
@@ -132,7 +135,6 @@ def csv_construct_tc(table, extract_type):
         Returns:
             str: CSV row for the test case header.
         """
-    print(table)
     if extract_type == "sirios":
         pattern = r"(TC\d{5})( \W )(.*)"           # SIRIOS
     if extract_type == "sirios_uc":
@@ -141,7 +143,14 @@ def csv_construct_tc(table, extract_type):
         pattern = r"(UC\d\d\d\.\d{1,2})( \W )(.*)"   # DWOS
     split_title = re.split(pattern, table)
     # return f",\"Test Case\",\"{table}\",,,\n"
-    return f",\"Test Case\",\"{split_title[1]} - {split_title[3]}\",,,,\"Data capturing Solutions ART\",\"Martin Carufel\",\"Design\"\n"
+    try:
+        title_row = f",\"Test Case\",\"{split_title[1]} - {split_title[3]}\",,,,\"Data capturing Solutions ART\",\"Martin Carufel\",\"Design\"\n"
+        print(table)
+        return title_row
+    except IndexError as e:
+        print(f"\n\nAn error occur to create Test Case title: {table}\n"
+              f"Check if TC id and title is sperated by <space>-<space> and not long dash\n\n {e}")
+
 
 
 def csv_setup_step(id, text):
@@ -193,9 +202,6 @@ def csv_construct_req(text, extract_type):
     #    pattern = r"(UC\d\d\d\.\d{1,2})( \W )(.*)"   # DWOS
 
     # pattern = r"\d{4}_\d{3}"
-    print("new item)")
-    print(text)
-    print("end item)")
     req_list = re.findall(pattern, text)
     if len(req_list) > 0:
         output = ", ".join(req_list)
@@ -252,7 +258,7 @@ def main():
         - Extracts test cases and associated data
         - Exports the structured content to a CSV file
         """
-    extract_type = "sirios_uc"        # set to: sirios, dwos, sirios_uc
+    extract_type = "sirios"        # set to: sirios, dwos, sirios_uc
     tc_tables = fetch_doc_in_dict(ask_word_file(), extract_type)
     # debug_print(tc_tables)
     now = datetime.now()
